@@ -1,11 +1,19 @@
-import React, { useEffect, useState } from "react";
-import { useParams, Link, Outlet, useNavigate } from "react-router-dom";
+import React, { useEffect, useRef, useState } from "react";
+import {
+  useParams,
+  Link,
+  Outlet,
+  useNavigate,
+  useLocation,
+} from "react-router-dom";
 import { fetchUserById } from "../services/api";
 
 const User = () => {
   const { userId } = useParams();
   const [user, setUser] = useState(null);
   const navigate = useNavigate();
+  const location = useLocation();
+  const backRef = useRef(location.state?.from || "/users");
 
   useEffect(() => {
     fetchUserById(userId).then((res) => {
@@ -15,7 +23,7 @@ const User = () => {
   }, [userId]);
 
   const handleBack = () => {
-    navigate("/users");
+    navigate(backRef.current);
   };
 
   //так як за замовчуванням юзер це пустий об'єкт, то поки він не підвантажиться відображаємо лоадінг

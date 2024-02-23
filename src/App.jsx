@@ -14,7 +14,7 @@ import { Home } from "./pages/Home";
 import { About } from "./pages/About";
 import { NotFound } from "./pages/NotFound";
 import Layout from "./components/Layout";
-import { Users } from "./pages/Users";
+import Users from "./pages/Users";
 import User from "./pages/User";
 import { Info } from "./components/UserInfo/Info";
 import { Posts } from "./components/UserInfo/Posts";
