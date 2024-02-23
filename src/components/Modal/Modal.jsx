@@ -1,24 +1,32 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { CloseButton, ModalContent, ModalWrapper } from "./Modal.styled";
+import { useEffect } from "react";
 
-export const Modal = (children, closeModal, title) => {
+export const Modal = ({ children, closeModal, title }) => {
   const handleBackdropClick = (e) => {
-    if (e.currentTarget === e.target) closeModal();
+    if (e.target === e.currentTarget) {
+      closeModal();
+    }
   };
 
   useEffect(() => {
-    const handleKeyDowm = (e) => {
-      if (e.key === "Escape") closeModal();
+    const handleKeyDown = (e) => {
+      if (e.key === "Escape") {
+        closeModal();
+      }
     };
-    document.addEventListener("keydown", handleKeyDowm);
-    return document.removeEventListener("keydown");
-  }, [closeModal]);
+    document.addEventListener("keydown", handleKeyDown);
 
+    return () => {
+      console.log("Close modal");
+      document.removeEventListener("keydown", handleKeyDown);
+    };
+  }, [closeModal]);
   return (
     <ModalWrapper onClick={handleBackdropClick}>
       <ModalContent>
         <>
-          <h1>{title}</h1>
+          <h1>{title?.split(" ")[0]}</h1>
           <hr />
         </>
         <CloseButton onClick={closeModal}>×</CloseButton>
