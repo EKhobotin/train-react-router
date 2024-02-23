@@ -16,20 +16,23 @@ import { NotFound } from "./pages/NotFound";
 import Layout from "./components/Layout";
 import { Users } from "./pages/Users";
 import User from "./pages/User";
+import { Info } from "./components/UserInfo/Info";
+import { Posts } from "./components/UserInfo/Posts";
+import Modal from "./components/Modal/Modal";
 
 export const App = () => {
   return (
     <>
-      {/* <nav>
-        <Link to="/">Home</Link>
-        <Link to="/about">About</Link>
-      </nav> */}
       <Routes>
         <Route path="/" element={<Layout />}>
           <Route index element={<Home />} />
           <Route path="about" element={<About />} />
           <Route path="users" element={<Users />} />
-          <Route path="users/:userId" element={<User />} />
+          <Route path="users/:userId" element={<User />}>
+            <Route path="info" element={<Info />} />
+            <Route path="posts" element={<Posts />} />
+          </Route>
+
           <Route path="*" element={<NotFound />} />
         </Route>
       </Routes>
