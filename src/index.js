@@ -6,6 +6,16 @@ import { BrowserRouter } from "react-router-dom";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 
+{
+  /* Обов'язково для gh-pages */
+}
+{
+  /* <BrowserRouter basename='/goit-hw-05-movies'> назва репозиторію */
+}
+{
+  /* 1. Додати BrowserRouter щоб працювали наші маршрути */
+}
+
 root.render(
   <BrowserRouter>
     <App />
